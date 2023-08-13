@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 const double bottomContainerHeight = 80.0;
 const Color bottomContainerColor = Color(0xFFEB1555);
@@ -21,22 +22,44 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: [
-                Expanded(child: ReusableCard(cardColor: defaultContainerColor)),
-                Expanded(child: ReusableCard(cardColor: defaultContainerColor)),
+                Expanded(
+                  child: ReusableCard(
+                    cardColor: defaultContainerColor,
+                    cardChild: GenderWidget(
+                      genderName: 'Male',
+                      genderIcon: FontAwesomeIcons.mars,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: ReusableCard(
+                    cardColor: defaultContainerColor,
+                    cardChild: GenderWidget(
+                      genderName: 'Female',
+                      genderIcon: FontAwesomeIcons.venus,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
           Expanded(
-            child: ReusableCard(cardColor: defaultContainerColor),
+            child: ReusableCard(
+              cardColor: defaultContainerColor,
+            ),
           ),
           Expanded(
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCard(cardColor: defaultContainerColor),
+                  child: ReusableCard(
+                    cardColor: defaultContainerColor,
+                  ),
                 ),
                 Expanded(
-                  child: ReusableCard(cardColor: defaultContainerColor),
+                  child: ReusableCard(
+                    cardColor: defaultContainerColor,
+                  ),
                 ),
               ],
             ),
@@ -55,14 +78,44 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
-class ReusableCard extends StatelessWidget {
-  final Color cardColor;
+class GenderWidget extends StatelessWidget {
+  final String genderName;
+  final IconData genderIcon;
 
-  ReusableCard({required this.cardColor});
+  GenderWidget({required this.genderName, required this.genderIcon});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          genderIcon,
+          size: 80,
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        Text(genderName,
+            style: TextStyle(
+              fontSize: 18,
+              color: Color(0xFF8D8E98),
+            )),
+      ],
+    );
+  }
+}
+
+class ReusableCard extends StatelessWidget {
+  final Color? cardColor;
+  final Widget? cardChild;
+
+  ReusableCard({required this.cardColor, this.cardChild});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      child: cardChild,
       margin: EdgeInsets.all(15.0),
       decoration: BoxDecoration(
         color: cardColor,
