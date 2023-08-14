@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'icon_content.dart';
-import 'reusable_card.dart';
-import 'constants.dart';
-import 'bottom_button.dart';
-import 'round_icon_button.dart';
+import '../components/icon_content.dart';
+import '../components/reusable_card.dart';
+import '../constants.dart';
+import '../components/bottom_button.dart';
+import '../components/round_icon_button.dart';
 
 enum Gender { male, female }
 
@@ -233,7 +233,7 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           BottomButton(
-            message: 'CALCULATE',
+            title: 'CALCULATE',
             onTap: () {
               Navigator.pushNamed(context, '/results_page');
             },
